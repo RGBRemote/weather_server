@@ -19,7 +19,9 @@ router.post('/', async (req,res) => {
 router.patch('/', async (req, res) => {
     try {
          // Set your default ID here
-        const condition = {statusCheck: "areyouactive?" }; // Change this to any condition you prefer
+        var str1 = "areyouactive?"; var str2 = "ok";
+        const condition1 = {statusCheck: `${str1}`}; // Change this to any condition you prefer
+        const condition2 = {statusCheck: `${str2}`}; // Change this to any condition you prefer
 
         const updateFields = {
             statusCheck: req.body.statusCheck,
@@ -27,7 +29,7 @@ router.patch('/', async (req, res) => {
         };
 
         const updatedPost = await statusPost.findOneAndUpdate(
-            condition,
+            (condition1 || condition2),
             { $set: updateFields },
             { new: true }
         );
