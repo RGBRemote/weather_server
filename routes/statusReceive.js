@@ -6,7 +6,7 @@ const date = new Date()
 router.post('/', async (req,res) => {
     const post = new statusPost({
         statusReceive: req.body.statusReceive,
-        time: `${date.getTime()}`
+        time: `${new Date().getTime()}`
     })
     try {
         const savedPost = await post.save();
@@ -23,7 +23,7 @@ router.patch('/', async (req, res) => {
 
         const updateFields = {
             statusReceive: req.body.statusReceive,
-            time: `${date.getTime()}`
+            time: `${new Date().getTime()}`
         };
 
         const updatedPost = await statusPost.findOneAndUpdate(
